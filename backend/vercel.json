@@ -1,0 +1,14 @@
+{
+  "builds": [
+    {
+      "src": "elimika/wsgi.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "elimika/wsgi.py"
+    }
+  ]
+}
