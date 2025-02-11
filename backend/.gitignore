@@ -1,2 +1,5 @@
 .env
 /env
+/__tests__/__snapshots__/
+__pycache__/
+db.sqlite3
