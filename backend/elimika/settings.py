@@ -98,8 +98,9 @@ PROD_DATABASES = {
         "PORT": config("PGPORT"),
     }
 }
+DB = config("DB", default=False, cast=bool)
 
-if DEBUG:
+if not DB:
     DATABASES = DEV_DATABASES
 else:
     DATABASES = PROD_DATABASES
