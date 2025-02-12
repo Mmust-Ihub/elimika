@@ -33,7 +33,7 @@ Learning Outcome: Clearly defined CBC-aligned learning goals.
 Introduction: A brief and engaging introduction that links the topic to the student’s interest.
 Interactive Learning Activity: A hands-on, real-world application that aligns with both the subject and the student’s passion (e.g., using football statistics for a math lesson, storytelling for literacy, or coding a simple game for technology).
 Practical Application: Suggest ways to apply the lesson in the student's everyday environment.
-Assessment & Reflection: An engaging way to assess understanding, such as a mini-project, storytelling session, or a creative task based on the student’s interest.
+Assessment & Reflection: An engaging way to assess understanding, such as a mini-project, storytelling ses sion, or a creative task based on the student’s interest.
 Home-Based Extension: Simple activities parents can use to reinforce learning at home, ensuring alignment with CBC objectives.
 Ensure the lesson is engaging, student-centered, and competency-based. If relevant, integrate digital tools, project-based learning, and problem-solving activities to enhance understanding. Present the final lesson plan in a structured and easy-to-follow format."
 """
