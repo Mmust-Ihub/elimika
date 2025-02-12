@@ -1,7 +1,7 @@
 from django.db import models
 from school.models import Teacher, Subject, Student
 
-
+# psycopg2-binary==2.9.9
 class Assignment(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
