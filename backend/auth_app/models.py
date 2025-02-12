@@ -1,10 +1,10 @@
-
 from django.db import models
 from django.contrib.auth.models import (
     AbstractBaseUser,
     BaseUserManager,
     PermissionsMixin,
 )
+from django.contrib.auth.hashers import make_password
 
 USER_TYPE = [
     ("admin", "Admin"),
@@ -30,14 +30,16 @@ class UserManager(BaseUserManager):
             is_staff=extra_fields["is_staff"],
             is_superuser=extra_fields["is_superuser"],
         )
-        user.set_password(password)
+        user.password = make_password(password)
         user.save(using=self._db)
         return user
 
     def create_user(self, username, email=None, password=None, **extra_fields):
         extra_fields.setdefault("is_staff", False)
         extra_fields.setdefault("is_superuser", False)
-        return self._create_user(username, email, password, **extra_fields)
+        return self._create_user(
+            username, email, make_password(password), **extra_fields
+        )
 
     def create_superuser(self, username, email=None, password=None, **extra_fields):
         extra_fields.setdefault("is_staff", True)

@@ -9,36 +9,39 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-l8untd)goy%&h*@c6+&p2tmsu*!++vyz_g=m(=va-khxjj!03o'
+SECRET_KEY = "django-insecure-l8untd)goy%&h*@c6+&p2tmsu*!++vyz_g=m(=va-khxjj!03o"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = config("DEBUG", default=False, cast=bool)
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'rest_framework',
-    'corsheaders',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "django.contrib.sites",
+    "corsheaders",
+    "rest_framework",
     "rest_framework.authtoken",
-    'dj_rest_auth',
-    'allauth',
+    "dj_rest_auth",
+    "dj_rest_auth.registration",
+    "allauth",
     "allauth.socialaccount",
-    'dj_rest_auth.registration',
-    'auth_app',
-    'school',
-    'recommendations', 
+    "allauth.account",
+    "auth_app",
+    "school",
+    "recommendations",
 ]
 
 SITE_ID = 1
+ACCOUNT_LOGIN_METHODS = {"email", "username"}
 
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
@@ -53,44 +56,44 @@ MIDDLEWARE = [
     "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
-ROOT_URLCONF = 'elimika.urls'
+ROOT_URLCONF = "elimika.urls"
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = 'elimika.wsgi.app'
+WSGI_APPLICATION = "elimika.wsgi.app"
 
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DEV_DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
 PROD_DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('PGDATABASE'),
-        'USER': config('PGUSER'),
-        'PASSWORD': config('PGPASSWORD'),
-        'HOST': config('PGHOST'),
-        'PORT': config('PGPORT'),
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": config("PGDATABASE"),
+        "USER": config("PGUSER"),
+        "PASSWORD": config("PGPASSWORD"),
+        "HOST": config("PGHOST"),
+        "PORT": config("PGPORT"),
     }
 }
 
@@ -105,44 +108,44 @@ else:
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
 
 
 REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES":[
-        'rest_framework.authentication.TokenAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.TokenAuthentication",
+        "rest_framework.authentication.BasicAuthentication",
     ],
-    'DEFAULT_PERMISSION_CLASSES':[
-        'rest_framework.permissions.AllowAny',
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.AllowAny",
     ],
-    # 'USER_DETAILS_SERIALIZER':'users.serializers.UserDetailsSerializer',
-    # 'REST_AUTH_SERIALIZERS':'users.serializers.CustomLoginSerializer',
-    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+    "USER_DETAILS_SERIALIZER": "auth_app.serializers.UserDetailsSerializer",
+    "REST_AUTH_SERIALIZERS": "auth_app.serializers.CustomLoginSerializer",
+    "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
 }
 
 REST_AUTH_SERIALIZERS = {
-    # "LOGIN_SERIALIZER": 'users.serializers.CustomLoginSerializer'
+    "LOGIN_SERIALIZER": "auth_app.serializers.CustomLoginSerializer"
 }
 
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = "UTC"
 
 USE_I18N = True
 
@@ -152,11 +155,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / 'static'
+STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR / "static"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-AUTH_USER_MODEL = 'auth_app.User'
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+AUTH_USER_MODEL = "auth_app.User"
+EMAIL_BACKEND = (
+    "django.core.mail.backends.console.EmailBackend"  # Or your preferred email backend
+)
+
+ACCOUNT_EMAIL_VERIFICATION = "none"  # or "mandatory" or "optional"
+ACCOUNT_AUTHENTICATION_METHOD = "username_email"  # or "username" or "email"
+ACCOUNT_EMAIL_REQUIRED = True  # or False
