@@ -128,27 +128,34 @@ class _AssessmentsScreenState extends ConsumerState<AssessmentsScreen> {
   }
 
   Widget _buildCompetencyReports(BuildContext context) {
+    final reportState = ref.watch(reportProvider);
     return Column(
       children: [
         // ...reports.map((report) => _buildReportItem(report)),
         Padding(
           padding: const EdgeInsets.all(16),
-          child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.blue,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-            ),
-            onPressed: () async {
-              print('View All Reports');
-              await ref.read(reportProvider.notifier).report();
-              _showAllReportsBottomSheet(context);
-            },
-            child: const Text('View Pathway Report',style: TextStyle(
-              color: Colors.white,
-            ),),
-          ),
+          child: reportState.isLoading
+              ? CircularProgressIndicator()
+              : ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  onPressed: () async {
+                    print(reportState.isLoading);
+
+                    await ref.read(reportProvider.notifier).report();
+                    _showAllReportsBottomSheet(context);
+                  },
+                  child: const Text(
+                    'View Pathway Report',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
         ),
       ],
     );

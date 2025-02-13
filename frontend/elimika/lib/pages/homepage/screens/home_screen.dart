@@ -1,3 +1,4 @@
+import 'package:elimika/utils/colors.dart';
 import 'package:flutter/material.dart';
 
 class HomeDashboard extends StatelessWidget {
@@ -6,15 +7,16 @@ class HomeDashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Student Dashboard'),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.account_circle),
-            onPressed: () {},
-          ),
-        ],
-      ),
+      backgroundColor: Colors.grey.shade300,
+      // appBar: AppBar(
+      //   title: Text('Student Dashboard'),
+      //   actions: [
+      //     IconButton(
+      //       icon: Icon(Icons.account_circle),
+      //       onPressed: () {},
+      //     ),
+      //   ],
+      // ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
@@ -34,9 +36,9 @@ class HomeDashboard extends StatelessWidget {
   }
 
   Widget _buildPerformanceSummary() {
-    return Card(
-      elevation: 4,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+    return Container(
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12), color: Colors.grey.shade400),
       child: Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(
@@ -45,7 +47,12 @@ class HomeDashboard extends StatelessWidget {
             Text('Performance Summary',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             SizedBox(height: 10),
-            LinearProgressIndicator(value: 0.7, minHeight: 10),
+            LinearProgressIndicator(
+              color: Color(0xff5f76f6),
+              value: 0.7,
+              minHeight: 10,
+              borderRadius: BorderRadius.circular(4),
+            ),
             SizedBox(height: 10),
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -61,9 +68,9 @@ class HomeDashboard extends StatelessWidget {
   }
 
   Widget _buildUpcomingAssessments() {
-    return Card(
-      elevation: 4,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+    return Container(
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12), color: Colors.grey.shade400),
       child: Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(
@@ -92,9 +99,9 @@ class HomeDashboard extends StatelessWidget {
   }
 
   Widget _buildRecommendedLessons() {
-    return Card(
-      elevation: 4,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+    return Container(
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12), color: Colors.grey.shade400),
       child: Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(
@@ -104,12 +111,12 @@ class HomeDashboard extends StatelessWidget {
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             ListTile(
               leading: Icon(Icons.book),
-              title: Text('Algebra Basics'),
+              title: Text('Mathematics activies'),
               subtitle: Text('Mathematics'),
             ),
             ListTile(
               leading: Icon(Icons.book),
-              title: Text('Physics Fundamentals'),
+              title: Text('Literacy Activities'),
               subtitle: Text('Science'),
             ),
             Align(

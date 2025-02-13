@@ -157,9 +157,34 @@ class _ProfileScreenState extends State<ProfileScreen> {
               );
             },
             style: ElevatedButton.styleFrom(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(24),
+              backgroundColor: Colors.blue,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
             ),
-            child: const Text('Save Changes'),
+            child: const Text('Save Changes',
+                style: TextStyle(color: Colors.white)),
+          ),
+          const SizedBox(height: 24),
+          ElevatedButton(
+            onPressed: () {
+              // Save settings logic here
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Logged out successfully',
+                      style: TextStyle(color: Colors.white)),
+                ),
+              );
+            },
+            style: ElevatedButton.styleFrom(
+              padding: const EdgeInsets.all(24),
+              backgroundColor: Colors.red,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+            ),
+            child: const Text('Logout', style: TextStyle(color: Colors.white)),
           ),
         ],
       ),

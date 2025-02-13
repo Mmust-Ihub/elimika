@@ -14,7 +14,8 @@ class ChatNotifier extends StateNotifier<ChatState> {
 
     try {
       final response = await http.post(
-        Uri.parse('https://elimika-chi.vercel.app/api/v1/recommendations/student-chat/'),
+        Uri.parse(
+            'https://elimika-chi.vercel.app/api/v1/recommendations/student-chat/'),
         headers: {'Content-Type': 'application/json'},
         body: json.encode(
           {
@@ -64,7 +65,7 @@ class ReportNotifier extends StateNotifier<ReportState> {
   Future<void> report() async {
     state = state.copyWith(isLoading: true, errorMessage: null);
     final token = await getToken();
-    print(token);
+   
 
     try {
       final response = await http.post(

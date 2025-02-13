@@ -89,17 +89,17 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
-                      labelText: 'Email',
-                      prefixIcon: const Icon(Icons.email),
+                      labelText: 'Username',
+                      prefixIcon: const Icon(Icons.person_2_outlined),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter your email';
+                        return 'Please enter your username';
                       }
-                     
+
                       return null;
                     },
                   ),
@@ -109,7 +109,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     obscureText: _obscurePassword,
                     decoration: InputDecoration(
                       labelText: 'Password',
-                      prefixIcon: const Icon(Icons.lock),
+                      prefixIcon: const Icon(Icons.lock_outlined),
                       suffixIcon: IconButton(
                         icon: Icon(
                           _obscurePassword
@@ -143,26 +143,27 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     ElevatedButton(
                       onPressed: _login,
                       style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        padding: const EdgeInsets.symmetric(vertical: 24),
+                        backgroundColor: Colors.blue,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
                       ),
                       child: const Text(
                         'Login',
-                        style: TextStyle(fontSize: 16),
+                        style: TextStyle(fontSize: 16, color: Colors.white),
                       ),
                     ),
                   const SizedBox(height: 16),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pushNamed('/register');
-                    },
-                    child: const Text(
-                      "Don't have an account? Register",
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  ),
+                  // TextButton(
+                  //   onPressed: () {
+                  //     Navigator.of(context).pushNamed('/register');
+                  //   },
+                  //   child: const Text(
+                  //     "Don't have an account? Register",
+                  //     style: TextStyle(fontSize: 16),
+                  //   ),
+                  // ),
                 ],
               ),
             ),
